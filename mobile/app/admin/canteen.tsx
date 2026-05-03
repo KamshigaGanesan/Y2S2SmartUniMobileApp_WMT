@@ -44,8 +44,7 @@ export default function AdminCanteenScreen() {
   const [availability, setAvailability] = useState<FoodAvailability>('Available');
   const [targetCanteen, setTargetCanteen] = useState<'Main' | 'Eagle'>('Main');
  
-  const socket = io('http://10.162.229.224:5000'); // 🔥 your backend IP
-  
+  const socket = io('https://northern-uni-smartcampus-network-system-production.up.railway.app');
   useEffect(() => {
     fetchFoodItems();
   }, []);

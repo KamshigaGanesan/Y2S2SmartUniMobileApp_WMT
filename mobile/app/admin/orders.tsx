@@ -36,7 +36,7 @@ type Order = {
   createdAt: string;
 };
 
-const SOCKET_URL = 'http://10.162.229.224:5000';
+const SOCKET_URL = 'https://northern-uni-smartcampus-network-system-production.up.railway.app';
 
 export default function AdminOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
