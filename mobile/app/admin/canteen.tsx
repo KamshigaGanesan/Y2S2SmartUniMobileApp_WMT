@@ -51,7 +51,7 @@ export default function AdminCanteenScreen() {
 
   const fetchFoodItems = async () => {
     try {
-      const response = await fetch(apiUrl('/api/food'));
+      const response = await fetch(apiUrl('/food'));
       const data = await response.json();
 
       const mapped: FoodItem[] = data.map((item: any) => ({
@@ -106,7 +106,7 @@ export default function AdminCanteenScreen() {
     try {
       setSubmitting(true);
 
-      const response = await fetch(apiUrl('/api/food'), {
+      const response = await fetch(apiUrl('/food'), {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',

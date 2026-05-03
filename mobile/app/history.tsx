@@ -80,7 +80,7 @@ const Timeline = ({ status }) => {
 
   const fetchOrders = async () => {
     try {
-      const res = await fetch(apiUrl('/api/orders'));
+      const res = await fetch(apiUrl('/orders'));
       const data = await res.json();
       setOrders(data);
     } catch (err) {

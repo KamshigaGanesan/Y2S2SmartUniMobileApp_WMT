@@ -56,7 +56,7 @@ export default function AdminVisitorsScreen() {
 
   const fetchVisitors = async () => {
     try {
-      const response = await fetch(apiUrl('/api/visitors'));
+      const response = await fetch(apiUrl('/visitors'));
       const data = await response.json();
 
       const mapped: Visitor[] = data.map((item: any) => ({
@@ -102,7 +102,7 @@ export default function AdminVisitorsScreen() {
     }
 
     try {
-      const response = await fetch(apiUrl(`/api/visitors/${id}/checkout`), {
+      const response = await fetch(apiUrl(`/visitors/${id}/checkout`), {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${user?.token}` },
       });
@@ -132,7 +132,7 @@ export default function AdminVisitorsScreen() {
         style: 'destructive',
         onPress: async () => {
           try {
-            const response = await fetch(apiUrl(`/api/visitors/${id}`), {
+            const response = await fetch(apiUrl(`/visitors/${id}`), {
               method: 'DELETE',
               headers: { Authorization: `Bearer ${user?.token}` },
             });

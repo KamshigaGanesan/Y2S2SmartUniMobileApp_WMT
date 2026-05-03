@@ -88,7 +88,7 @@ export default function LostFoundScreen() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch(apiUrl('/api/lostfound'));
+      const response = await fetch(apiUrl('/lostfound'));
       const data = await response.json();
 
       const mapped: LostFoundItem[] = data.map((item: any) => ({
@@ -165,7 +165,7 @@ export default function LostFoundScreen() {
     try {
       setSubmitting(true);
 
-      const response = await fetch(apiUrl('/api/lostfound'), {
+      const response = await fetch(apiUrl('/lostfound'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

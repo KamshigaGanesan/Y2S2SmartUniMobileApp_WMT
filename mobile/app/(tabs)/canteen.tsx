@@ -69,7 +69,7 @@ export default function CanteenScreen() {
 
   const fetchFoodItems = async () => {
     try {
-      const response = await fetch(apiUrl('/api/food'));
+      const response = await fetch(apiUrl('/food'));
       const data = await response.json();
 
       const mapped: FoodItem[] = data.map((item: any) => ({
@@ -277,7 +277,7 @@ const handlePlaceOrder = async () => {
 
   try {
     // ✅ SEND TO BACKEND
-    await fetch(apiUrl('/api/orders'), {
+    await fetch(apiUrl('/orders'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

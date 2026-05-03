@@ -131,7 +131,7 @@ const openSMS = async (phone: string, name: string) => {
 
   const fetchVisitors = async () => {
     try {
-      const response = await fetch(apiUrl('/api/visitors'), {
+      const response = await fetch(apiUrl('/visitors'), {
         headers: user?.token ? { Authorization: `Bearer ${user.token}` } : undefined,
       });
       const data = await response.json();
@@ -179,7 +179,7 @@ const createReservation = async () => {
     console.log('📤 Sending reservation...');
 
     // ✅ DEFINE res FIRST
-    const response = await fetch(apiUrl('/api/reservations'), {
+    const response = await fetch(apiUrl('/reservations'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -226,7 +226,7 @@ useEffect(() => {
 }, []);
 
 const fetchReservations = async () => {
-  const res = await fetch(apiUrl('/api/reservations'));
+  const res = await fetch(apiUrl('/reservations'));
   const data = await res.json();
   setReservations(data);
 };
@@ -300,7 +300,7 @@ phoneNumber: visitorContact.trim(),
   status: 'Checked In',
 };
 
-      const response = await fetch(apiUrl('/api/visitors'), {
+      const response = await fetch(apiUrl('/visitors'), {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -357,7 +357,7 @@ const savedVisitor = data;
 
     try {
       setUpdatingId(id);
-      const response = await fetch(apiUrl(`/api/visitors/${id}/checkout`), {
+      const response = await fetch(apiUrl(`/visitors/${id}/checkout`), {
         method: 'PATCH',
         headers: {
           Authorization: `Bearer ${user?.token}`,
@@ -626,7 +626,7 @@ const savedVisitor = data;
                   <TouchableOpacity
                     style={styles.markDoneBtn}
                     onPress={async () => {
-                      await fetch(apiUrl(`/api/reservations/${r._id}/arrived`), { method: 'PATCH' });
+                      await fetch(apiUrl(`/reservations/${r._id}/arrived`), { method: 'PATCH' });
                       fetchReservations();
                       showFeedback(`✔️ ${r.fullName} marked as arrived.`, 'success');
                     }}

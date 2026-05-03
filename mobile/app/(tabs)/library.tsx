@@ -64,7 +64,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
     const fetchBooks = async () => {
       try {
-        const res = await fetch(apiUrl('/api/books'));
+        const res = await fetch(apiUrl('/books'));
         const data = await res.json();
 
         const mapped: LibraryItem[] = data.map((book: any, index: number) => ({

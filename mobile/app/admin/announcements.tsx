@@ -71,7 +71,7 @@ export default function AdminAnnouncementsScreen() {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await fetch(apiUrl('/api/announcements'));
+      const response = await fetch(apiUrl('/announcements'));
       const data = await response.json();
       const mapped: Announcement[] = data.map((item: any) => ({
         id: item._id,
@@ -108,7 +108,7 @@ export default function AdminAnnouncementsScreen() {
     }
 
     try {
-      const response = await fetch(apiUrl('/api/announcements'), {
+      const response = await fetch(apiUrl('/announcements'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ export default function AdminAnnouncementsScreen() {
         style: 'destructive',
         onPress: async () => {
           try {
-            const response = await fetch(apiUrl(`/api/announcements/${id}`), {
+            const response = await fetch(apiUrl(`/announcements/${id}`), {
               method: 'DELETE',
               headers: { Authorization: `Bearer ${user?.token}` },
             });
@@ -168,7 +168,7 @@ export default function AdminAnnouncementsScreen() {
   const handleUpdate = async () => {
     if (!editState) return;
     try {
-      const response = await fetch(apiUrl(`/api/announcements/${editState.id}`), {
+      const response = await fetch(apiUrl(`/announcements/${editState.id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

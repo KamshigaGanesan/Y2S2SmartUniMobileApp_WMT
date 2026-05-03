@@ -73,7 +73,7 @@ export default function AdminOrders() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const res = await fetch(apiUrl('/api/orders'));
+      const res = await fetch(apiUrl('/orders'));
       if (!res.ok) throw new Error('Failed to fetch orders');
       const data = await res.json();
       setOrders(data.sort((a: Order, b: Order) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
@@ -86,7 +86,7 @@ export default function AdminOrders() {
 
   const updateStatus = async (id: string, status: Order['status']) => {
     try {
-      const res = await fetch(apiUrl(`/api/orders/${id}/status`), {
+      const res = await fetch(apiUrl(`/orders/${id}/status`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

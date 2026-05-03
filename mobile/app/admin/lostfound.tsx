@@ -79,7 +79,7 @@ export default function AdminLostFoundScreen() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch(apiUrl('/api/lostfound'));
+      const response = await fetch(apiUrl('/lostfound'));
       const data = await response.json();
 
       const mapped: LostFoundItem[] = data.map((item: any) => ({
@@ -122,7 +122,7 @@ export default function AdminLostFoundScreen() {
     }
 
     try {
-      const response = await fetch(apiUrl('/api/lostfound'), {
+      const response = await fetch(apiUrl('/lostfound'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ export default function AdminLostFoundScreen() {
         style: 'destructive',
         onPress: async () => {
           try {
-            const response = await fetch(apiUrl(`/api/lostfound/${itemId}`), {
+            const response = await fetch(apiUrl(`/lostfound/${itemId}`), {
               method: 'DELETE',
               headers: { Authorization: `Bearer ${user?.token}` },
             });
@@ -190,7 +190,7 @@ export default function AdminLostFoundScreen() {
     if (!editingItem) return;
 
     try {
-      const response = await fetch(apiUrl(`/api/lostfound/${editingItem.id}`), {
+      const response = await fetch(apiUrl(`/lostfound/${editingItem.id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

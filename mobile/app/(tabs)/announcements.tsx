@@ -65,7 +65,7 @@ export default function AnnouncementScreen() {
         setLoading(true);
       }
 
-      const response = await fetch(apiUrl('/api/announcements'));
+      const response = await fetch(apiUrl('/announcements'));
       const data = await response.json();
 
       const mapped: Announcement[] = Array.isArray(data)
