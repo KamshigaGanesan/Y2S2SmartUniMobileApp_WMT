@@ -1,20 +1,31 @@
 import { useEffect, useState } from 'react';
-import { View, Text, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { View, Text, Button, Alert } from 'react-native';
+import { Camera } from 'expo-camera';
 
 export default function QRScreen() {
-  const [hasPermission, setHasPermission] = useState(null);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
 
   useEffect(() => {
-    BarCodeScanner.requestPermissionsAsync().then(({ status }) => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
-    });
+    })();
   }, []);
 
-  const handleScan = ({ data }) => {
+  const handleScan = ({ data }: any) => {
     setScanned(true);
-    alert(`Delivery Confirmed: ${data}`);
+
+    Alert.alert(
+      'Delivery Confirmed',
+      data,
+      [
+        {
+          text: 'OK',
+          onPress: () => setScanned(false),
+        },
+      ]
+    );
   };
 
   if (hasPermission === null) return <Text>Requesting camera...</Text>;
@@ -22,12 +33,23 @@ export default function QRScreen() {
 
   return (
     <View style={{ flex: 1 }}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleScan}
+      <Camera
         style={{ flex: 1 }}
+        onBarCodeScanned={scanned ? undefined : handleScan}
+        barCodeScannerSettings={{
+          barCodeTypes: [
+            'qr',
+            'ean13',
+            'ean8',
+            'code128',
+            'code39',
+          ],
+        }}
       />
 
-      {scanned && <Button title="Scan Again" onPress={() => setScanned(false)} />}
+      {scanned && (
+        <Button title="Scan Again" onPress={() => setScanned(false)} />
+      )}
     </View>
   );
 }

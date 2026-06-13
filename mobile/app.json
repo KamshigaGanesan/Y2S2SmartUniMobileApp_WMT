@@ -7,10 +7,13 @@
     "icon": "./assets/images/icon.png",
     "scheme": "mobile",
     "userInterfaceStyle": "automatic",
+
     "newArchEnabled": true,
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
@@ -20,11 +23,14 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.mathuppriya.mobile"
+      "package": "com.mathuppriya.mobile",
+      "permissions": ["android.permission.CAMERA"]
     },
+
     "web": {
       "output": "static"
     },
+
     "plugins": [
       "expo-router",
       [
@@ -41,18 +47,21 @@
       ],
       "expo-secure-store",
       "@react-native-google-signin/google-signin",
-      "expo-web-browser",
-      "expo-barcode-scanner"
+      "expo-web-browser"
     ],
+
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
     },
+
     "extra": {
       "router": {},
       "eas": {
         "projectId": "c66dd47f-3a44-4a86-a188-f7594432e11e"
       }
-    }
+    },
+
+    "owner": "mathuppriya"
   }
 }
